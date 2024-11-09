@@ -76,6 +76,42 @@ namespace apiFestivos.Aplicacion.Servicios
             return AgregarDias(fecha, diasLunes);
         }
 
+        private FechaFestivo ObtenerFestivo(int año, Festivo festivo)
+        {
+            FechaFestivo fechaFestivo = null;
+            switch (festivo.IdTipo)
+            {
+                case 1:
+                    fechaFestivo = new FechaFestivo
+                    {
+                        Fecha = new DateTime(año, festivo.Mes, festivo.Dia),
+                        Nombre = festivo.Nombre
+                    };
+                    break;
+                case 2:
+                    fechaFestivo = new FechaFestivo
+                    {
+                        Fecha = SiguienteLunes(new DateTime(año, festivo.Mes, festivo.Dia)),
+                        Nombre = festivo.Nombre
+                    };
+                    break;
+                case 3:
+                    fechaFestivo = new FechaFestivo
+                    {
+                        Fecha = AgregarDias(ObtenerInicioSemanaSanta(año), festivo.DiasPascua),
+                        Nombre = festivo.Nombre
+                    };
+                    break;
+                case 4:
+                    fechaFestivo = new FechaFestivo
+                    {
+                        Fecha = SiguienteLunes(AgregarDias(ObtenerInicioSemanaSanta(año), festivo.DiasPascua)),
+                        Nombre = festivo.Nombre
+                    };
+                    break;
+            }
+            return fechaFestivo;
+        }
 
         public async Task<IEnumerable<FechaFestivo>> ObtenerAño(int Año)
         {
@@ -84,39 +120,7 @@ namespace apiFestivos.Aplicacion.Servicios
             List<FechaFestivo> fechaFestivos = new List<FechaFestivo>();
             foreach (var festivo in festivos)
             {
-                FechaFestivo fechaFestivo = null;
-                switch (festivo.IdTipo)
-                {
-                    case 1:
-                        fechaFestivo = new FechaFestivo
-                        {
-                            Fecha = new DateTime(Año, festivo.Mes, festivo.Dia),
-                            Nombre = festivo.Nombre
-                        };
-                        break;
-                    case 2:
-                        fechaFestivo = new FechaFestivo
-                        {
-                            Fecha = SiguienteLunes(new DateTime(Año, festivo.Mes, festivo.Dia)),
-                            Nombre = festivo.Nombre
-                        };
-                        break;
-                    case 3:
-                        fechaFestivo = new FechaFestivo
-                        {
-                            Fecha = AgregarDias(ObtenerInicioSemanaSanta(Año), festivo.DiasPascua),
-                            Nombre = festivo.Nombre
-                        };
-                        break;
-                    case 4:
-                        fechaFestivo = new FechaFestivo
-                        {
-                            Fecha = SiguienteLunes(AgregarDias(ObtenerInicioSemanaSanta(Año), festivo.DiasPascua)),
-                            Nombre = festivo.Nombre
-                        };
-                        break;
-                }
-                fechaFestivos.Add(fechaFestivo);
+                fechaFestivos.Add(ObtenerFestivo(Año, festivo));
             }
             return fechaFestivos;
         }
