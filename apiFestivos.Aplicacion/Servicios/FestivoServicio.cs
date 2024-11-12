@@ -76,7 +76,7 @@ namespace apiFestivos.Aplicacion.Servicios
             return AgregarDias(fecha, diasLunes);
         }
 
-        private FechaFestivo ObtenerFestivo(int año, Festivo festivo)
+        public FechaFestivo ObtenerFestivo(int año, Festivo festivo)
         {
             FechaFestivo fechaFestivo = null;
             switch (festivo.IdTipo)
