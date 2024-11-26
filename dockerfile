@@ -17,4 +17,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=build /app .
 
-ENTRYPOINT [ "dotnet", "apiFestivos.Presentacion.dll" ]
+ENTRYPOINT ["dotnet", "apiFestivos.Presentacion.dll"]
