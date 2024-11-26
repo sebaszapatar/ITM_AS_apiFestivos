@@ -13,7 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "apiFestivos.Aplicacion", "a
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "apiFestivos.Presentacion", "apiFestivos.Presentacion\apiFestivos.Presentacion.csproj", "{5099B615-4372-4B2F-9603-989D5DDCD249}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "apiFestivos.Tests", "apiFestivos.Tests\apiFestivos.Tests.csproj", "{3E927ABE-37EE-4BE4-BEAD-00130CFF4A00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "apiFestivos.Tests", "apiFestivos.Tests\apiFestivos.Tests.csproj", "{3E927ABE-37EE-4BE4-BEAD-00130CFF4A00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{556784DD-981B-4657-BC3B-52CFC413080F}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
